@@ -1,0 +1,70 @@
+<h2>Angular Template-Driven Form Example</h2>
+
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="user.name" name="name" required #nameCtrl="ngModel">
+    <small class="error-msg">Name is required.</small>
+  </div>
+
+  <div class="form-group">
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="user.email" name="email" required #emailCtrl="ngModel">
+    <small class="error-msg">Enter a valid email.</small>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>
+
+<!-- Always visible (No *ngIf) -->
+<h3>Submitted Data</h3>
+<p><strong>Name:</strong> {{ submittedName }}</p>
+<p><strong>Email:</strong> {{ submittedEmail }}</p>
+
+
+
+<h2>Angular Reactive Form Example</h2>
+
+<form (submit)="ShowSubmit()">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" [formControl]="user2.name" name="name" required>
+    <small class="error-msg">Name is required.</small>
+  </div>
+
+  <div class="form-group">
+    <label>Email:</label>
+    <input type="email" [formControl]="user2.email" name="email" required>
+    <small class="error-msg">Enter a valid email.</small>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<h3>Submitted Data</h3>
+<!--{{ user3.value.name }}-->
+<p><strong>Name:</strong>{{ submittedName2 }}</p>
+<p><strong>Email:</strong>{{ submittedEmail2 }}</p>
+
+
+<h2>FormGroup Example</h2>
+
+<form [formGroup]="user3" (ngSubmit)="GroupSubmit()">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" formControlName="name" name="name" required>
+    <small class="error-msg">Name is required.</small>
+  </div>
+
+  <div class="form-group">
+    <label>Email:</label>
+    <input type="email" formControlName="email" name="email" required>
+    <small class="error-msg">Enter a valid email.</small>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<h3>Submitted Data</h3>
+<p><strong>Name:</strong>{{ submittedName3 }}</p>
+<p><strong>Email:</strong>{{ submittedEmail3 }}</p>
